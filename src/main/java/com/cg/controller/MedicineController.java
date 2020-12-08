@@ -20,20 +20,20 @@ import com.cg.service.MedicineService;
 public class MedicineController
 {
 	@Autowired
-	private MedicineService medService;
+	private MedicineService medicineService;
 
 	@PostMapping("/Medicines/newmedicine")
 	public Medicine addMedicine(@RequestBody Medicine medicine)
 	{
-		return medService.addMedicine(medicine);
+		return medicineService.addMedicine(medicine);
 	}
 
 	@PutMapping("/Medicines/updatemedicine/{id}")
-	public ResponseEntity<Medicine> updateMedicine(@PathVariable(value = "id") Long medId,
-			@RequestBody Medicine med) throws MedicineNotFoundException
+	public ResponseEntity<Medicine> updateMedicine(@PathVariable(value = "id") Long medId, @RequestBody Medicine med)
+			throws MedicineNotFoundException
 	{
-		Medicine medicine = medService.getMedicineById(medId)
-				.orElseThrow(() -> new MedicineNotFoundException("No employee found with id: " + medId));
+		Medicine medicine = medicineService.getMedicineById(medId)
+				.orElseThrow(() -> new MedicineNotFoundException("No medicine found with id: " + medId));
 		medicine.setMedicineCategory(med.getMedicineCategory());
 		medicine.setMedicineDescription(med.getMedicineDescription());
 		medicine.setMedicineExpiryDate(med.getMedicineExpiryDate());
@@ -42,30 +42,29 @@ public class MedicineController
 		medicine.setMedicineName(med.getMedicineName());
 		medicine.setMedicinePrice(med.getMedicinePrice());
 		medicine.setMedicineQuantity(med.getMedicineQuantity());
-		Medicine updateMedicine = medService.addMedicine(medicine);
+		Medicine updateMedicine = medicineService.addMedicine(medicine);
 		return ResponseEntity.ok(updateMedicine);
 	}
 
 	@DeleteMapping("Medicines/deletemedicine/{id}")
 	public String deleteMedicine(@PathVariable(value = "id") Long medId) throws MedicineNotFoundException
 	{
-		Medicine medicine = medService.getMedicineById(medId)
+		Medicine medicine = medicineService.getMedicineById(medId)
 				.orElseThrow(() -> new MedicineNotFoundException("No employee found with id: " + medId));
-		medService.deleteMedicine(medicine);
+		medicineService.deleteMedicine(medicine);
 		return "Medicine " + medId + " is deleted successfully";
 	}
 
 	@GetMapping("/Medicines/all")
 	public List<Medicine> listAllMedicine()
 	{
-		return medService.getAllMedicine();
+		return medicineService.getAllMedicine();
 	}
 
 	@GetMapping("/Medicines/id/{id}")
-	public ResponseEntity<Medicine> searchById(@PathVariable(value = "id") Long medId)
-			throws MedicineNotFoundException
+	public ResponseEntity<Medicine> searchById(@PathVariable(value = "id") Long medId) throws MedicineNotFoundException
 	{
-		Medicine medicine = medService.getMedicineById(medId)
+		Medicine medicine = medicineService.getMedicineById(medId)
 				.orElseThrow(() -> new MedicineNotFoundException("No medicine found with the id: " + medId));
 		return ResponseEntity.ok().body(medicine);
 	}
@@ -74,20 +73,29 @@ public class MedicineController
 	public List<Medicine> searchByName(@PathVariable(value = "medicinename") String medName)
 			throws MedicineNotFoundException
 	{
-		return medService.searchByName(medName);
+		return medicineService.searchByName(medName);
 	}
 
 	@GetMapping("/Medicines/manufacturername/{manufacturername}")
 	public List<Medicine> searchByManufacturer(@PathVariable(value = "manufacturername") String manufacturerName)
 			throws MedicineNotFoundException
 	{
-		return medService.searchByManufacturer(manufacturerName);
+		return medicineService.searchByManufacturer(manufacturerName);
 	}
 
-//	@GetMapping("/Medicines/checkstock/{stock}")
-//	public boolean checkStock(@PathVariable(value = "stock") int stock)
-//
-//	{
-//		return medService.checkStock(stock);
-//	}
+	@GetMapping("/Medicines/checkstock/{id}")
+	public boolean checkStock(@PathVariable(value = "id") Long id) throws MedicineNotFoundException
+	{
+		Medicine medicine = medicineService.getMedicineById(id)
+				.orElseThrow(() -> new MedicineNotFoundException("No medicine found with id: " + id));
+		if (medicine.getMedicineQuantity() <= 1)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
 }

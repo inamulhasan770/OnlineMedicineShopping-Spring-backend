@@ -1,14 +1,12 @@
 package com.cg.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.exception.MedicineNotFoundException;
 import com.cg.model.Address;
-import com.cg.model.User;
 import com.cg.repository.AddressRepository;
 
 @RestController
@@ -36,16 +34,16 @@ public class AddressService
 		addressRepo.delete(address);
 	}
 
-	public Optional<Address> getAddressById(int id) throws MedicineNotFoundException
-	{
-		return addressRepo.findById(id);
-
-	}
-
-	public List<User> getAddressByCustomerId(int id) throws MedicineNotFoundException
-	{
-		return addressRepo.findCustomerById(id);
-	}
+//	public Optional<Address> getAddressById(int id) throws MedicineNotFoundException
+//	{
+//		return addressRepo.findById(id);
+//
+//	}
+//
+//	public List<User> getAddressByCustomerId(int id) throws MedicineNotFoundException
+//	{
+//		return addressRepo.findCustomerById(id);
+//	}
 
 	public List<Address> getAllAddress()
 	{
