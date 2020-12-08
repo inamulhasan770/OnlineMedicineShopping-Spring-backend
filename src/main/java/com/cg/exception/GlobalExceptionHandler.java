@@ -26,8 +26,8 @@ public class GlobalExceptionHandler
 		return new ResponseEntity<>(error, HttpStatus.OK);
 	}
 
-	@ExceptionHandler(RoleNotFoundException.class)
-	public ResponseEntity<Object> handleAddressNotFoundException(CartNotFoundException e)
+	@ExceptionHandler(AddressNotFoundException.class)
+	public ResponseEntity<Object> handleAddressNotFoundException(AddressNotFoundException e)
 	{
 		ErrorMessage error = new ErrorMessage();
 		error.setErrorCode(HttpStatus.NOT_FOUND.value());
@@ -37,6 +37,24 @@ public class GlobalExceptionHandler
 
 	@ExceptionHandler(RoleNotFoundException.class)
 	public ResponseEntity<Object> handleRoleNotFoundException(RoleNotFoundException e)
+	{
+		ErrorMessage error = new ErrorMessage();
+		error.setErrorCode(HttpStatus.NOT_FOUND.value());
+		error.setErrorMessage(e.getMessage());
+		return new ResponseEntity<>(error, HttpStatus.OK);
+	}
+
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException e)
+	{
+		ErrorMessage error = new ErrorMessage();
+		error.setErrorCode(HttpStatus.NOT_FOUND.value());
+		error.setErrorMessage(e.getMessage());
+		return new ResponseEntity<>(error, HttpStatus.OK);
+	}
+
+	@ExceptionHandler(OrderNotFoundException.class)
+	public ResponseEntity<Object> handleOrderNotFoundException(OrderNotFoundException e)
 	{
 		ErrorMessage error = new ErrorMessage();
 		error.setErrorCode(HttpStatus.NOT_FOUND.value());

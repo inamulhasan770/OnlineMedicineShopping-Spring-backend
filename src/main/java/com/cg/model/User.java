@@ -50,7 +50,8 @@ public class User
 	@Length(min = 8, max = 8)
 	private String password;
 
-	private String previousPassword;
+	private String previousPassword1;
+	private String previousPassword2;
 
 	private Date createdDate = new java.sql.Date(new java.util.Date().getTime());
 
@@ -75,6 +76,26 @@ public class User
 	public String getEmailId()
 	{
 		return emailId;
+	}
+
+	public String getPreviousPassword1()
+	{
+		return previousPassword1;
+	}
+
+	public void setPreviousPassword1(String previousPassword1)
+	{
+		this.previousPassword1 = previousPassword1;
+	}
+
+	public String getPreviousPassword2()
+	{
+		return previousPassword2;
+	}
+
+	public void setPreviousPassword2(String previousPassword2)
+	{
+		this.previousPassword2 = previousPassword2;
 	}
 
 	public void setEmailId(String emailId)
@@ -142,16 +163,6 @@ public class User
 		this.password = password;
 	}
 
-	public String getPreviousPassword()
-	{
-		return previousPassword;
-	}
-
-	public void setPreviousPassword(String previousPassword)
-	{
-		this.previousPassword = previousPassword;
-	}
-
 	public Role getRole()
 	{
 		return role;
@@ -170,6 +181,15 @@ public class User
 	public void setAddress(Address address)
 	{
 		this.address = address;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "User [emailId=" + emailId + ", userName=" + userName + ", userAge=" + userAge + ", userGender="
+				+ userGender + ", userPhone=" + userPhone + ", password=" + password + ", previousPassword1="
+				+ previousPassword1 + ", previousPassword2=" + previousPassword2 + ", createdDate=" + createdDate
+				+ ", role=" + role + ", address=" + address + "]";
 	}
 
 }

@@ -173,10 +173,21 @@ public class Medicine
 		this.medicineQuantity = medicineQuantity;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Medicine [medicineId=" + medicineId + ", medicineName=" + medicineName + ", medicineCategory="
+				+ medicineCategory + ", medicineDescription=" + medicineDescription + ", medicinePrice=" + medicinePrice
+				+ ", medicineManufacturerName=" + medicineManufacturerName + ", medicineManufactureDate="
+				+ medicineManufactureDate + ", medicineExpiryDate=" + medicineExpiryDate + ", medicineQuantity="
+				+ medicineQuantity + "]";
+	}
+
 	/**
 	 * Implementing and overriding toString method to retrieve all values in the
 	 * instance of Medicine Class
 	 */
+
 //	@Override
 //	public String toString()
 //	{

@@ -84,4 +84,11 @@ public class OrderMedicine
 		this.price = price;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "OrderMedicine [orderMedicineId=" + orderMedicineId + ", order=" + order + ", medicineList="
+				+ medicineList + ", quantity=" + quantity + ", price=" + price + "]";
+	}
+
 }

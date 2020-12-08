@@ -29,19 +29,19 @@ public class AddressController
 	}
 
 	@PutMapping("/address/updateaddress/{id}")
-	public ResponseEntity<Address> updateAddress(@PathVariable(value = "id") int addrId, @RequestBody Address addr)
-			throws AddressNotFoundException
+	public ResponseEntity<Address> updateAddress(@PathVariable(value = "id") int addrId,
+			@RequestBody Address newAddress) throws AddressNotFoundException
 	{
-		Address address = addressService.getAddressById(addrId)
+		Address oldAddress = addressService.getAddressById(addrId)
 				.orElseThrow(() -> new AddressNotFoundException("No Address found with id: " + addrId));
-		address.setAddressId(addr.getAddressId());
-		address.setArea(addr.getArea());
-		address.setCity(addr.getCity());
-		address.setPinCode(addr.getPinCode());
-		address.setState(addr.getState());
-		address.setStreetName(addr.getStreetName());
-		address.setCustomerEntity(addr.getCustomerEntity());
-		Address updateAddress = addressService.addAddress(address);
+		oldAddress.setAddressId(newAddress.getAddressId());
+		oldAddress.setArea(newAddress.getArea());
+		oldAddress.setCity(newAddress.getCity());
+		oldAddress.setPinCode(newAddress.getPinCode());
+		oldAddress.setState(newAddress.getState());
+		oldAddress.setStreetName(newAddress.getStreetName());
+		oldAddress.setCustomerEntity(newAddress.getCustomerEntity());
+		Address updateAddress = addressService.addAddress(oldAddress);
 		return ResponseEntity.ok(updateAddress);
 	}
 

@@ -29,20 +29,20 @@ public class MedicineController
 	}
 
 	@PutMapping("/Medicines/updatemedicine/{id}")
-	public ResponseEntity<Medicine> updateMedicine(@PathVariable(value = "id") Long medId, @RequestBody Medicine med)
-			throws MedicineNotFoundException
+	public ResponseEntity<Medicine> updateMedicine(@PathVariable(value = "id") Long medId,
+			@RequestBody Medicine newMedicine) throws MedicineNotFoundException
 	{
-		Medicine medicine = medicineService.getMedicineById(medId)
+		Medicine oldMedicine = medicineService.getMedicineById(medId)
 				.orElseThrow(() -> new MedicineNotFoundException("No medicine found with id: " + medId));
-		medicine.setMedicineCategory(med.getMedicineCategory());
-		medicine.setMedicineDescription(med.getMedicineDescription());
-		medicine.setMedicineExpiryDate(med.getMedicineExpiryDate());
-		medicine.setMedicineManufactureDate(med.getMedicineManufactureDate());
-		medicine.setMedicineManufacturerName(med.getMedicineManufacturerName());
-		medicine.setMedicineName(med.getMedicineName());
-		medicine.setMedicinePrice(med.getMedicinePrice());
-		medicine.setMedicineQuantity(med.getMedicineQuantity());
-		Medicine updateMedicine = medicineService.addMedicine(medicine);
+		oldMedicine.setMedicineCategory(newMedicine.getMedicineCategory());
+		oldMedicine.setMedicineDescription(newMedicine.getMedicineDescription());
+		oldMedicine.setMedicineExpiryDate(newMedicine.getMedicineExpiryDate());
+		oldMedicine.setMedicineManufactureDate(newMedicine.getMedicineManufactureDate());
+		oldMedicine.setMedicineManufacturerName(newMedicine.getMedicineManufacturerName());
+		oldMedicine.setMedicineName(newMedicine.getMedicineName());
+		oldMedicine.setMedicinePrice(newMedicine.getMedicinePrice());
+		oldMedicine.setMedicineQuantity(newMedicine.getMedicineQuantity());
+		Medicine updateMedicine = medicineService.addMedicine(oldMedicine);
 		return ResponseEntity.ok(updateMedicine);
 	}
 

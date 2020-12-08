@@ -20,8 +20,6 @@ import javax.validation.constraints.NotEmpty;
  *
  */
 @Entity
-
-//@Table(name = "cart")
 public class Cart
 {
 
@@ -51,15 +49,6 @@ public class Cart
 	{
 		super();
 	}
-
-//	public CartEntity(MedicineEntity medicineEntity, CustomerEntity customerEntity, int quantity, float costPerPiece)
-//	{
-//		super();
-//		this.medicineEntity = medicineEntity;
-//		this.customerEntity = customerEntity;
-//		this.quantity = quantity;
-//		this.costPerPiece = costPerPiece;
-//	}
 
 	/**
 	 * Creating Getter and Setter methods
@@ -94,16 +83,6 @@ public class Cart
 		this.user = user;
 	}
 
-	public User getCustomerEntity()
-	{
-		return user;
-	}
-
-	public void setCustomerEntity(User user)
-	{
-		this.user = user;
-	}
-
 	public int getQuantity()
 	{
 		return quantity;
@@ -124,16 +103,16 @@ public class Cart
 		this.costPerPiece = costPerPiece;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Cart [cartId=" + cartId + ", medicineList=" + medicineList + ", user=" + user + ", quantity=" + quantity
+				+ ", costPerPiece=" + costPerPiece + "]";
+	}
+
 	/**
 	 * Overriding and implementing toString method to retrieve all values in the
 	 * instance of CartEntity Class
 	 */
-
-//	@Override
-//	public String toString()
-//	{
-//		return "CartEntity [cartId=" + cartId + ", medicineEntity=" + medicineEntity + ", customerEntity="
-//				+ customerEntity + ", quantity=" + quantity + ", costPerPiece=" + costPerPiece + "]";
-//	}
 
 }

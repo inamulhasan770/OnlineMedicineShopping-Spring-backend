@@ -165,10 +165,18 @@ public class Address
 		this.pinCode = pinCode;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Address [addressId=" + addressId + ", flatNo=" + flatNo + ", streetName=" + streetName + ", area="
+				+ area + ", city=" + city + ", state=" + state + ", pinCode=" + pinCode + ", user=" + user + "]";
+	}
+
 	/**
 	 * Implementing toString to retrieve all values in the instance of AdminEntity
 	 * Class
 	 */
+
 //	@Override
 //	public String toString()
 //	{
