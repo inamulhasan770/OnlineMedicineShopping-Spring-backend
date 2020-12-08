@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
  *
  */
 @Entity
-//@Table(name = "medicine")
 @Component
 public class Medicine
 {
@@ -25,7 +24,7 @@ public class Medicine
 	 */
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 //	@Column(name = "id")
 	private Long medicineId;
 //	@Column(name = "medicine_name")

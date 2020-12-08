@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.stereotype.Component;
+
 /**
  * CartEntity class
  * 
@@ -20,6 +22,7 @@ import javax.validation.constraints.NotEmpty;
  *
  */
 @Entity
+@Component
 public class Cart
 {
 

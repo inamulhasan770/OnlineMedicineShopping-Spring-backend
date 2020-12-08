@@ -1,12 +1,11 @@
 package com.cg.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -23,13 +22,13 @@ import org.springframework.stereotype.Component;
  */
 @Entity
 @Component
+@Table(name = "user_table")
 public class User
 {
 	/**
 	 * Creating Instance variable of class User
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotEmpty(message = "E-mail should not be null")
 	@Email(regexp = "?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\]")
 	private String emailId;
@@ -48,18 +47,18 @@ public class User
 			+ "+ \"(?=\\\\S+$).{8,20}$\"", message = "Should match the constraints")
 	@NotEmpty(message = "password should not be null")
 	@Length(min = 8, max = 8)
-	private String password;
+	private String userPassword;
 
 	private String previousPassword1;
 	private String previousPassword2;
 
-	private Date createdDate = new java.sql.Date(new java.util.Date().getTime());
+	private Date createdDate = new java.util.Date(new java.util.Date().getTime());
 
 	@OneToOne
 	private Role role;
 
 	@OneToOne
-	private Address address;
+	private Address userAddress;
 
 	/**
 	 * creating parameterized constructors
@@ -155,12 +154,12 @@ public class User
 
 	public String getPassword()
 	{
-		return password;
+		return userPassword;
 	}
 
-	public void setPassword(String password)
+	public void setPassword(String userPassword)
 	{
-		this.password = password;
+		this.userPassword = userPassword;
 	}
 
 	public Role getRole()
@@ -175,21 +174,21 @@ public class User
 
 	public Address getAddress()
 	{
-		return address;
+		return userAddress;
 	}
 
 	public void setAddress(Address address)
 	{
-		this.address = address;
+		this.userAddress = address;
 	}
 
 	@Override
 	public String toString()
 	{
 		return "User [emailId=" + emailId + ", userName=" + userName + ", userAge=" + userAge + ", userGender="
-				+ userGender + ", userPhone=" + userPhone + ", password=" + password + ", previousPassword1="
+				+ userGender + ", userPhone=" + userPhone + ", password=" + userPassword + ", previousPassword1="
 				+ previousPassword1 + ", previousPassword2=" + previousPassword2 + ", createdDate=" + createdDate
-				+ ", role=" + role + ", address=" + address + "]";
+				+ ", role=" + role + ", address=" + userAddress + "]";
 	}
 
 }

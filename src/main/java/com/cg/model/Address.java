@@ -1,6 +1,8 @@
 package com.cg.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -22,7 +24,7 @@ public class Address
 	 * creating instance variables for the class AddressEntity
 	 */
 	@Id
-//	@Column(name = "address_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int addressId;
 //	@Column(name = "flat_no")
 	private String flatNo;
@@ -37,7 +39,7 @@ public class Address
 //	@Column(name = "pin_code")
 	private int pinCode;
 
-	@OneToOne(mappedBy = "address")
+	@OneToOne(mappedBy = "userAddress")
 	private User user;
 
 	/**
@@ -168,8 +170,8 @@ public class Address
 	@Override
 	public String toString()
 	{
-		return "Address [addressId=" + addressId + ", flatNo=" + flatNo + ", streetName=" + streetName + ", area="
-				+ area + ", city=" + city + ", state=" + state + ", pinCode=" + pinCode + ", user=" + user + "]";
+		return "Address [ " + flatNo + "\t" + streetName + "\t" + area + "\t" + city + "\t" + state + "\t" + pinCode
+				+ "\t" + user + "\t ]";
 	}
 
 	/**

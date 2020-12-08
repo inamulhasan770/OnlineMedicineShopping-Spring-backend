@@ -33,7 +33,7 @@ public class UserController
 			throws UserNotFoundException
 	{
 		User oldUser = userService.getUserById(userId)
-				.orElseThrow(() -> new UserNotFoundException("No medicine found with id: " + userId));
+				.orElseThrow(() -> new UserNotFoundException("No user found with id: " + userId));
 		oldUser.setUserName(newUser.getUserName());
 		oldUser.setUserAge(newUser.getUserAge());
 		oldUser.setUserGender(newUser.getUserGender());

@@ -9,20 +9,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
 
 @Entity // Declare the class as entity or table
-@Table(name = "Role") // Declare the table name
+@Component
 public class Role
 {
 
 	@Id // specifies the property, use for identity of the class
 //	@Column(name = "ROLE_ID") // Specify the column name
 	@GeneratedValue(strategy = GenerationType.AUTO) // generates an automatic value during commit for every new entity
-													// object
+													// // // object
 	private long roleId;
 
-//	@Column(name = "ROLE_NAME")
 	private String roleName;
 
 	/*

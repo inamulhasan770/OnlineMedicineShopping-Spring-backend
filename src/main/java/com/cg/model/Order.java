@@ -1,6 +1,6 @@
 package com.cg.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,11 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 /*
  * Author: Srivatsan
  */
 @Entity
-@Table(name = "orderTable")
+@Component
+@Table(name = "order_table")
 public class Order
 {
 
@@ -31,7 +34,7 @@ public class Order
 
 	private Date orderDate;
 
-	private String Address;
+	private String shippingAddress;
 
 	public long getOrderId()
 	{
@@ -65,19 +68,19 @@ public class Order
 
 	public String getAddress()
 	{
-		return Address;
+		return shippingAddress;
 	}
 
 	public void setAddress(String address)
 	{
-		Address = address;
+		this.shippingAddress = address;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "Order [orderId=" + orderId + ", user=" + user + ", orderDate=" + orderDate + ", Address=" + Address
-				+ "]";
+		return "Order [orderId=" + orderId + ", user=" + user + ", orderDate=" + orderDate + ", Address="
+				+ shippingAddress + "]";
 	}
 
 //	@ManyToOne
