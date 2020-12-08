@@ -12,54 +12,52 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.exception.MedicineNotFoundException;
+import com.cg.exception.AddressNotFoundException;
 import com.cg.model.Address;
 import com.cg.service.AddressService;
 
 @RestController
-
 public class AddressController
 {
 	@Autowired
-	private AddressService addrService;
+	private AddressService addressService;
 
 	@PostMapping("/address/newaddress")
 	public Address addAddress(@RequestBody Address address)
 	{
-		return addrService.addAddress(address);
+		return addressService.addAddress(address);
 	}
 
 	@PutMapping("/address/updateaddress/{id}")
-	public ResponseEntity<Address> updateAddress(@PathVariable(value = "id") int addrId,
-			@RequestBody Address addr) throws MedicineNotFoundException
+	public ResponseEntity<Address> updateAddress(@PathVariable(value = "id") int addrId, @RequestBody Address addr)
+			throws AddressNotFoundException
 	{
-		Address address = addrService.getAddressById(addrId)
-				.orElseThrow(() -> new MedicineNotFoundException("No Address found with id: " + addrId));
+		Address address = addressService.getAddressById(addrId)
+				.orElseThrow(() -> new AddressNotFoundException("No Address found with id: " + addrId));
 		address.setAddressId(addr.getAddressId());
-		address.setAddressType(addr.getAddressType());
 		address.setArea(addr.getArea());
 		address.setCity(addr.getCity());
 		address.setPinCode(addr.getPinCode());
 		address.setState(addr.getState());
 		address.setStreetName(addr.getStreetName());
 		address.setCustomerEntity(addr.getCustomerEntity());
-		Address updateAddress = addrService.addAddress(address);
+		Address updateAddress = addressService.addAddress(address);
 		return ResponseEntity.ok(updateAddress);
 	}
 
 	@DeleteMapping("address/deleteaddress/{id}")
-	public String deleteAddress(@PathVariable(value = "id") int addrId) throws MedicineNotFoundException
+	public String deleteAddress(@PathVariable(value = "id") int addrId) throws AddressNotFoundException
 	{
-		Address address = addrService.getAddressById(addrId)
-				.orElseThrow(() -> new MedicineNotFoundException("No employee found with id: " + addrId));
-		addrService.deleteAddress(address);
+		Address address = addressService.getAddressById(addrId)
+				.orElseThrow(() -> new AddressNotFoundException("No address found with id: " + addrId));
+		addressService.deleteAddress(address);
 		return "Address " + addrId + " is deleted successfully";
 	}
 
 	@GetMapping("/address/all")
 	public List<Address> listAllAddress()
 	{
-		return addrService.getAllAddress();
+		return addressService.getAllAddress();
 	}
 
 //	@GetMapping("/address/id/{id}")

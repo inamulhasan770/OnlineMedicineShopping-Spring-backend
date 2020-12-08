@@ -26,6 +26,24 @@ public class GlobalExceptionHandler
 		return new ResponseEntity<>(error, HttpStatus.OK);
 	}
 
+	@ExceptionHandler(RoleNotFoundException.class)
+	public ResponseEntity<Object> handleAddressNotFoundException(CartNotFoundException e)
+	{
+		ErrorMessage error = new ErrorMessage();
+		error.setErrorCode(HttpStatus.NOT_FOUND.value());
+		error.setErrorMessage(e.getMessage());
+		return new ResponseEntity<>(error, HttpStatus.OK);
+	}
+
+	@ExceptionHandler(RoleNotFoundException.class)
+	public ResponseEntity<Object> handleRoleNotFoundException(RoleNotFoundException e)
+	{
+		ErrorMessage error = new ErrorMessage();
+		error.setErrorCode(HttpStatus.NOT_FOUND.value());
+		error.setErrorMessage(e.getMessage());
+		return new ResponseEntity<>(error, HttpStatus.OK);
+	}
+
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> handleException(Exception e)
 	{
